@@ -95,7 +95,7 @@ function CategoriesCard({
             Selecione uma data com o intervalo de período
             <p className="text-sm text-muted-foreground ">
               Tente selecionar um período diferente ou tente adicionar uma nova{" "}
-              {type === "receita" ? "receita" : "receitas"}
+              {type === "receita" ? "receita" : "despesas"}
             </p>
           </div>
         )}
@@ -103,12 +103,12 @@ function CategoriesCard({
         {filteredData.length > 0 && (
           <ScrollArea className="h-60 w-full px-4">
             <div className="flex w-full flex-col gap-4 p-4">
-              {filteredData.map((item) => {
+              {filteredData.map((item, index) => {
                 const amount = item._sum.amount || 0;
                 const percentage = (amount * 100) / (total || amount);
 
                 return (
-                  <div className="flex flex-col gap-2">
+                  <div key={index} className="flex flex-col gap-2">
                     <div className="flex items-center justify-between">
                       <span className="flex items-center text-gray-400">
                         {item.categoryIcon} {item.category}
@@ -140,7 +140,6 @@ function CategoriesCard({
 }
 
 function GetFormatterForCurrency(currency: string) {
-  // Implemente a função de formatação de moeda aqui
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency,
