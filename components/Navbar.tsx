@@ -56,7 +56,7 @@ function MobileNavbar() {
         </div>
         <div className="flex items-center gap-2">
           <ThemeSwitcherBtn />
-          <UserButton />
+          <UserButton signInUrl="/sign-in" />
         </div>
       </nav>
     </div>
@@ -77,7 +77,7 @@ function DesktopNavbar() {
         </div>
         <div className="flex items-center gap-2">
           <ThemeSwitcherBtn />
-          <UserButton />
+          <UserButton signInUrl="/sign-in" />
         </div>
       </nav>
     </div>
