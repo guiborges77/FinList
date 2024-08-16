@@ -8,13 +8,7 @@ import { cn } from "@/lib/utils";
 import { ThemeSwitcherBtn } from "./ThemeSwitcherBtn";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 function Navbar() {
   return (
@@ -62,11 +56,12 @@ function MobileNavbar() {
         </div>
         <div className="flex items-center gap-2">
           <ThemeSwitcherBtn />
-          <UserButton
-            signInUrl="/sign-in"
-            signOutUrl="/sign-in"
-            redirectUrl="/"
-          />
+          <SignedIn>
+            <UserButton redirectUrl="/" />
+          </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal" redirectUrl="/" />
+          </SignedOut>
         </div>
       </nav>
     </div>
@@ -87,11 +82,12 @@ function DesktopNavbar() {
         </div>
         <div className="flex items-center gap-2">
           <ThemeSwitcherBtn />
-          <UserButton
-            signInUrl="/sign-in"
-            signOutUrl="/sign-in"
-            redirectUrl="/"
-          />
+          <SignedIn>
+            <UserButton redirectUrl="/" />
+          </SignedIn>
+          <SignedOut>
+            <SignInButton mode="modal" redirectUrl="/" />
+          </SignedOut>
         </div>
       </nav>
     </div>
