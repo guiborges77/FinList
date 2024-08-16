@@ -23,21 +23,13 @@ import {
 import { cn } from "@/lib/utils";
 
 export interface DateRangePickerProps {
-  /** Click handler for applying the updates from DateRangePicker. */
   onUpdate?: (values: { range: DateRange; rangeCompare?: DateRange }) => void;
-  /** Initial value for start date */
   initialDateFrom?: Date | string;
-  /** Initial value for end date */
   initialDateTo?: Date | string;
-  /** Initial value for start date for compare */
   initialCompareFrom?: Date | string;
-  /** Initial value for end date for compare */
   initialCompareTo?: Date | string;
-  /** Alignment of popover */
   align?: "start" | "center" | "end";
-  /** Option for locale */
   locale?: string;
-  /** Option for showing compare feature */
   showCompare?: boolean;
 }
 
@@ -51,14 +43,10 @@ const formatDate = (date: Date, locale: string = "en-us"): string => {
 
 const getDateAdjustedForTimezone = (dateInput: Date | string): Date => {
   if (typeof dateInput === "string") {
-    // Split the date string to get year, month, and day parts
     const parts = dateInput.split("-").map((part) => parseInt(part, 10));
-    // Create a new Date object using the local timezone
-    // Note: Month is 0-indexed, so subtract 1 from the month part
     const date = new Date(parts[0], parts[1] - 1, parts[2]);
     return date;
   } else {
-    // If dateInput is already a Date object, return it directly
     return dateInput;
   }
 };
@@ -73,7 +61,6 @@ interface Preset {
   label: string;
 }
 
-// Define presets
 const PRESETS: Preset[] = [
   { name: "hoje", label: "Hoje" },
   { name: "ontem", label: "Ontem" },
@@ -86,7 +73,6 @@ const PRESETS: Preset[] = [
   { name: "mesPassado", label: "Mês Passado" },
 ];
 
-/** The DateRangePicker component allows a user to select a range of dates */
 export const DateRangePicker: FC<DateRangePickerProps> & {
   filePath: string;
 } = ({
@@ -118,7 +104,6 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
       : undefined
   );
 
-  // Refs to store the values of range and rangeCompare when the date picker is opened
   const openedRangeRef = useRef<DateRange | undefined>();
   const openedRangeCompareRef = useRef<DateRange | undefined>();
 
@@ -137,7 +122,6 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
 
     window.addEventListener("resize", handleResize);
 
-    // Clean up event listener on unmount
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -151,48 +135,48 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
     const first = from.getDate() - from.getDay();
 
     switch (preset.name) {
-      case "today":
+      case "hoje":
         from.setHours(0, 0, 0, 0);
         to.setHours(23, 59, 59, 999);
         break;
-      case "yesterday":
+      case "ontem":
         from.setDate(from.getDate() - 1);
         from.setHours(0, 0, 0, 0);
         to.setDate(to.getDate() - 1);
         to.setHours(23, 59, 59, 999);
         break;
-      case "last7":
+      case "ultimos7":
         from.setDate(from.getDate() - 6);
         from.setHours(0, 0, 0, 0);
         to.setHours(23, 59, 59, 999);
         break;
-      case "last14":
+      case "ultimos14":
         from.setDate(from.getDate() - 13);
         from.setHours(0, 0, 0, 0);
         to.setHours(23, 59, 59, 999);
         break;
-      case "last30":
+      case "ultimos30":
         from.setDate(from.getDate() - 29);
         from.setHours(0, 0, 0, 0);
         to.setHours(23, 59, 59, 999);
         break;
-      case "thisWeek":
+      case "estaSemana":
         from.setDate(first);
         from.setHours(0, 0, 0, 0);
         to.setHours(23, 59, 59, 999);
         break;
-      case "lastWeek":
+      case "semanaPassada":
         from.setDate(from.getDate() - 7 - from.getDay());
         to.setDate(to.getDate() - to.getDay() - 1);
         from.setHours(0, 0, 0, 0);
         to.setHours(23, 59, 59, 999);
         break;
-      case "thisMonth":
+      case "esteMes":
         from.setDate(1);
         from.setHours(0, 0, 0, 0);
         to.setHours(23, 59, 59, 999);
         break;
-      case "lastMonth":
+      case "mesPassado":
         from.setMonth(from.getMonth() - 1);
         from.setDate(1);
         from.setHours(0, 0, 0, 0);
@@ -289,7 +273,7 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
 
   useEffect(() => {
     checkPreset();
-  }, [range]);
+  }, [range, rangeCompare]);
 
   const PresetButton = ({
     preset,
@@ -316,9 +300,8 @@ export const DateRangePicker: FC<DateRangePickerProps> & {
     </Button>
   );
 
-  // Helper function to check if two date ranges are equal
   const areRangesEqual = (a?: DateRange, b?: DateRange): boolean => {
-    if (!a || !b) return a === b; // If either is undefined, return true if both are undefined
+    if (!a || !b) return a === b;
     return (
       a.from.getTime() === b.from.getTime() &&
       (!a.to || !b.to || a.to.getTime() === b.to.getTime())
