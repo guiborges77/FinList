@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { ThemeSwitcherBtn } from "./ThemeSwitcherBtn";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import { UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 function Navbar() {
   return (
