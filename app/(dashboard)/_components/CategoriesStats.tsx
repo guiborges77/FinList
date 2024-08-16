@@ -10,7 +10,6 @@ import { UserSetting } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import React, { useMemo } from "react";
 
-// Definindo o tipo de resposta da API
 type GetCategoriesStatsResponseType = Array<{
   type: string;
   category: string;
@@ -47,7 +46,7 @@ function CategoriesStats({ userSettings, from, to }: Props) {
         <CategoriesCard
           formatter={formatter}
           type="receita"
-          data={Array.isArray(statsQuery.data) ? statsQuery.data : []} // Garante que data é um array
+          data={Array.isArray(statsQuery.data) ? statsQuery.data : []}
         />
       </SkeletonWrapper>
 
@@ -55,7 +54,7 @@ function CategoriesStats({ userSettings, from, to }: Props) {
         <CategoriesCard
           formatter={formatter}
           type="despesa"
-          data={Array.isArray(statsQuery.data) ? statsQuery.data : []} // Garante que data é um array
+          data={Array.isArray(statsQuery.data) ? statsQuery.data : []}
         />
       </SkeletonWrapper>
     </div>
@@ -95,7 +94,7 @@ function CategoriesCard({
             Selecione uma data com o intervalo de período
             <p className="text-sm text-muted-foreground ">
               Tente selecionar um período diferente ou tente adicionar uma nova{" "}
-              {type === "receita" ? "receita" : "despesas"}
+              {type === "receita" ? "receita" : "despesa"}
             </p>
           </div>
         )}
