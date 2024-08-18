@@ -271,7 +271,7 @@ function TransactionTable({ from, to }: Props) {
                     colSpan={columns.length}
                     className="h-24 text-center"
                   >
-                    No results.
+                    Sem resultados.
                   </TableCell>
                 </TableRow>
               )}
@@ -285,7 +285,7 @@ function TransactionTable({ from, to }: Props) {
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
+            Anterior
           </Button>
           <Button
             variant="outline"
@@ -293,7 +293,7 @@ function TransactionTable({ from, to }: Props) {
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
+            Próximo
           </Button>
         </div>
       </SkeletonWrapper>
