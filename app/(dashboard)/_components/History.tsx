@@ -177,6 +177,14 @@ function CustomTooltip({ active, payload, formatter }: any) {
 
   return (
     <div className="min-w-[300px] rounded border bg-background p-4">
+       <TooltipRow
+        formatter={formatter}
+        label="Balanço"
+        value={receita - despesa}
+        bgColor="bg-gray-500"
+        textColor="text-foreground"
+      />
+      
       <TooltipRow
         formatter={formatter}
         label="Despesa"
@@ -193,13 +201,7 @@ function CustomTooltip({ active, payload, formatter }: any) {
         textColor="text-emerald-500"
       />
 
-      <TooltipRow
-        formatter={formatter}
-        label="Balanço"
-        value={receita - despesa}
-        bgColor="bg-gray-500"
-        textColor="text-foreground"
-      />
+     
     </div>
   );
 }
