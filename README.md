@@ -22,7 +22,9 @@ Este é um aplicativo completo de gerenciamento de finanças pessoais. Ele permi
 ## Tecnologias Utilizadas
 
 - **Linguagem de Programação**: TypeScript
-- **Biblioteca/Framework**: React
-- **Biblioteca de UI**: ShadcnUI
-- **Banco de Dados**: PostgreSQL
-- **Ferramenta de Visualização de Dados**: Chart.js.
+- **Framework**: Next.js
+- **Autenticação**: Clerk
+- **Estilização**: Tailwind CSS e Shadcn UI
+- **Gerenciamento de Banco de Dados**: Prisma (SQLite e Vercel PostgreSQL)
+- **Gerenciamento de Estado**: React-Query
+- **Visualização de Dados**: Recharts
