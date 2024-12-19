@@ -1,4 +1,4 @@
-# Gerenciador de Finanças Pessoais
+## Acesse: https://fin-list.vercel.app/
 
 ## Descrição
 
@@ -28,3 +28,19 @@ Este é um aplicativo completo de gerenciamento de finanças pessoais. Ele permi
 - **Gerenciamento de Banco de Dados**: Prisma (SQLite e Vercel PostgreSQL)
 - **Gerenciamento de Estado**: React-Query
 - **Visualização de Dados**: Recharts
+
+
+## Como Usar
+
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/guiborges77/FinList.git
+   Instale as dependências necessárias:
+
+2. Instale as dependências:
+   ```bash
+    npm install
+
+3. Execute a aplicação:
+  ```bash
+    npm run dev
